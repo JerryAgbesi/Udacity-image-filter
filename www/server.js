@@ -17,7 +17,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const util_1 = require("./util/util");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     // Init the Express application
-    const app = express_1.default();
+    const app = (0, express_1.default)();
     // Set the network port
     const port = process.env.PORT || 8082;
     // Use the body parser middleware for post requests
@@ -45,10 +45,10 @@ const util_1 = require("./util/util");
             res.status(400).send("Image URL is required");
         }
         try {
-            const filteredImage = yield util_1.filterImageFromURL(image_url);
+            const filteredImage = yield (0, util_1.filterImageFromURL)(image_url);
             //send filtered image and delete any localfile
             res.status(200).sendFile(filteredImage, () => {
-                util_1.deleteLocalFiles([filteredImage]);
+                (0, util_1.deleteLocalFiles)([filteredImage]);
             });
         }
         catch (error) {
